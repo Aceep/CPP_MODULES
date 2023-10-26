@@ -3,7 +3,7 @@
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 # Name
-NAME	= Harl_Filter
+NAME	= Now_we_are_talking
 
 #______________________________________________________________________________#
 ############################### Compiler #######################################
@@ -98,7 +98,7 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp Harl.cpp
+SRC_FILES	=	main.cpp Fixed.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths

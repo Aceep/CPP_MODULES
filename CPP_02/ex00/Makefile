@@ -3,7 +3,7 @@
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 # Name
-NAME	= Harl_Filter
+NAME	= Fixed
 
 #______________________________________________________________________________#
 ############################### Compiler #######################################
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Reset
-Color_Off='\033[0m'       # Text Reset
+RESET='\033[0m'       # Text Reset
 
 # Colors
 YELLOW = \033[0;33m
@@ -98,7 +98,7 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp Harl.cpp
+SRC_FILES	=	main.cpp Fixed.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths
