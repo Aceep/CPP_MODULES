@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Reset
-RESET='\033[0m'       # Text Reset
+Color_Off='\033[0m'       # Text Reset
 
 # Colors
 YELLOW = \033[0;33m
@@ -89,6 +89,7 @@ On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
 
+
 # One Line Output
 OL =\e[1A\r\033[K
 CLEAR = \033[2K
@@ -103,7 +104,6 @@ OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER		+=  Harl.hpp
 
 #_____Build_____#
 all: $(NAME)
