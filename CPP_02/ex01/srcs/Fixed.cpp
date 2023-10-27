@@ -37,19 +37,23 @@ Fixed & Fixed::operator=( Fixed const & rhs )
     return *this;
 }
 
+
+
 int Fixed::getRawBits( void ) const
 {
+    //std::cout << "getRawBits member function called" << std::endl;
     return this->_fixedPointValue;
 }
 
 void Fixed::setRawBits( int const raw )
 {
+    //std::cout << "setRawBits member function called" << std::endl;
     this->_fixedPointValue = raw;
 }
 
 float Fixed::toFloat( void ) const
 {
-    return (float)this->_fixedPointValue / (1 << this->_fractionalBits);
+    return static_cast<float>( this->getRawBits() ) / ( 1 << _fractionalBits );
 }
 
 int Fixed::toInt( void ) const

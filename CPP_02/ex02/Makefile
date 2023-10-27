@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Reset
-RESET='\033[0m'       # Text Reset
+RESET=\033[0m      # Text Reset
 
 # Colors
 YELLOW = \033[0;33m
