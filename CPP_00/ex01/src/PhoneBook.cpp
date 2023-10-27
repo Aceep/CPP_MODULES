@@ -72,8 +72,10 @@ void    PhoneBook::get_information() const
         std::getline(std::cin, input);
         while(input.empty() == true || input.length() > 1 || input[0] < '1' || input[0] > '8' || input[0] - '0' > this->_index)
         {
-            std::cout << "\033[31mPlease enter a correct index\033[0m" << std::endl;
+            std::cout << "\033[31mPlease enter a correct index or tape 0 to abort\033[0m" << std::endl;
             std::getline(std::cin, input);
+            if (input.compare("0") == 0)
+                return ;
         }
         index = input[0] - '0';
         while (i <= this->_index)

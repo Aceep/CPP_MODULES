@@ -27,5 +27,8 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME)
+	@$(RM) mine
+	@$(RM) original
+	@$(RM) output
 
 re : clean all

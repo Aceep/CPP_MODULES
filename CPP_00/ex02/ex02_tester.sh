@@ -39,8 +39,8 @@ else
     cat result
 fi
 echo "\033[31mCleaning...\033[0m"
-make -C ../ex02 fclean > /dev/null
-rm output mine original
+#make -C ../ex02 fclean > /dev/null
+#rm output mine original
 if [ "$OPT" = "0" ]; then
     rm result
 fi

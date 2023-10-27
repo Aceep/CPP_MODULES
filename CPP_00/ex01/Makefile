@@ -24,11 +24,6 @@ SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: $(NAME)
-	@printf "$(GREEN)            ___ ___          ___    _____    _     _   \n$(RESET)"
-	@printf "$(RED) ___ _ _   |   |_  |     ___|  _|  |    _| _| |_ _| |_ \n$(RESET)"
-	@printf "$(YELLOW)| -_|_'_|  | | |_| |_   | . |  _|  |   |_ |_   _|_   _|\n$(RESET)"
-	@printf "$(BLUE)|___|_,_|  |___|_____|  |___|_|    |_____|  |_|   |_|  \n$(RESET)"
-	@printf "\n"
 
 #compile the executable
 $(NAME): $(OBJ)
