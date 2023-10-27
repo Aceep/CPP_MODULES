@@ -11,10 +11,17 @@ Contact::~Contact()
 bool    Contact::is_empty(std::string str, std::string message)
 {
     int i = 0;
+    static int st = 0;
 
     while (str.empty() == true)
     {
-        std::cout << "\033[31m" << message << " can't be empty\nPlease choose one to continue\033[0m\nTo abort the creation of a contact, please write 0" << std::endl;
+        if (st == 1)
+        {    
+            std::cout << "\033[31mPhone number must be a number\nPlease choose one to continue\033[0m\nTo abort the creation of a contact, please write 0" << std::endl;
+            st = 0;
+        }
+        else
+            std::cout << "\033[31m" << message << " can't be empty\nPlease choose one to continue\033[0m\nTo abort the creation of a contact, please write 0" << std::endl;
         std::cout << message << " :";
         std::getline(std::cin, str);
         i++;
@@ -29,7 +36,17 @@ bool    Contact::is_empty(std::string str, std::string message)
     if (message == "First name")
         this->_first_name = str;
     else if (message == "Phone number")
+    {
+        if (str.find_first_not_of("0123456789") != std::string::npos)
+        {    
+            st = 1;
+            if (is_empty("", message) == false)
+                return (false);
+        }
+        else
+            st = 0;
         this->_phone_number = str;
+    }    
     else if (message == "Last name")
         this->_last_name = str;
     else if (message == "Nickname")
@@ -41,26 +58,30 @@ bool    Contact::is_empty(std::string str, std::string message)
 
 bool    Contact::create_contact()
 {
+    Contact contact;
+
+    if (!this->_first_name.empty())
+        contact = *this;
     std::cout << "First name :";
     std::getline(std::cin, this->_first_name);
     if (is_empty(this->_first_name, "First name") == false)
-        return (false);
+        return (*this = contact, false);
     std::cout << "Last name :";
     std::getline(std::cin, this->_last_name);
     if (is_empty(this->_last_name, "Last name") == false)
-        return (false);
+        return (*this = contact, false);
     std::cout << "Nickname :";
     std::getline(std::cin, this->_nickname);
     if (is_empty(this->_nickname, "Nickname") == false)
-        return (false);
+        return (*this = contact, false);
     std::cout << "Phone number :";
     std::getline(std::cin, this->_phone_number);
     if (is_empty(this->_phone_number, "Phone number") == false)
-        return (false);
+        return (*this = contact, false);
     std::cout << "Darkest secret :";
     std::getline(std::cin, this->_darkest_secret);
     if (is_empty(this->_darkest_secret, "Darkest secret") == false)
-        return (false);
+        return (*this = contact, false);
     return (true);
 }
 std::string Contact::print_len(std::string info)const
