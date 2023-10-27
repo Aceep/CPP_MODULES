@@ -50,7 +50,6 @@ void Harl::harl_filter(int level)
 {
     switch (level)
     {
-       
         case    0:
            this->debug();
             __attribute__ ((fallthrough));

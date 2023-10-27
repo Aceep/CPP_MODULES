@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Reset
-RESET='\033[0m'       # Text Reset
+RESET=\033[0m       # Text Reset
 
 # Colors
 YELLOW = \033[0;33m
@@ -113,7 +113,7 @@ all: $(NAME)
 #compile the executable
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
+	@echo "$(GREEN)Finished $(NAME)$(RESET)"
 
 #compile objects
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
@@ -125,7 +125,5 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME)
-	@$(RM) filename.replace
-	@$(RM) filename
 
 re : clean all

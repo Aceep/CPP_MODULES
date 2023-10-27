@@ -2,6 +2,16 @@
 #include <fstream>
 #include <string>
 
+std::string    replace(std::string &line, std::string s1, std::string s2)
+{
+    int pos = 0;
+    while ((pos = line.find(s1)) != -1)
+    {
+        line.erase(pos, s1.length());
+        line.insert(pos, s2);
+    }
+    return (line);
+}
 int main(int argc, char **argv)
 {
     if (argc != 4)
@@ -22,12 +32,7 @@ int main(int argc, char **argv)
     }
     std::getline(ifs, line);
     ofs.open((std::string(argv[1]) + ".replace").c_str());
-    int pos = 0;
-    while ((pos = line.find(s1)) != -1)
-    {
-        line.erase(pos, s1.length());
-        line.insert(pos, s2);
-    }
+    line = replace(line, s1, s2);
     ofs << line;
 
     ifs.close();

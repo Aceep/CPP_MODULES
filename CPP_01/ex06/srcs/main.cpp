@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 
     if (argc != 2)
     {
-        std::cout << "Usage: ./harl [filter]" << std::endl;
+        std::cout << "Usage: ./Harl_Filter [filter]" << std::endl;
         return (1);
     }
     Harl harl;

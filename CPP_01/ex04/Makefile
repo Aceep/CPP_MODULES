@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Reset
-NC = \033[0m
+RESET = \033[0m
 
 # Colors
 YELLOW = \033[0;33m
@@ -74,7 +74,7 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME)
-	@$(RM) filename.replace
-	@$(RM) filename
+	@$(RM) ifs.replace
+	@$(RM) empty.replace
 
 re : clean all

@@ -13,7 +13,7 @@ class Harl
         void complain(std::string level);
 
     private:
-        std::string _filename;
+        //std::string _filename;
         void debug(void);
         void info(void);
         void error(void);
