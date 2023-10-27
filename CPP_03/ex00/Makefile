@@ -3,7 +3,7 @@
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 # Name
-NAME	= Now_we_are_talking
+NAME	= ClapTrap
 
 #______________________________________________________________________________#
 ############################### Compiler #######################################
@@ -89,7 +89,6 @@ On_IPurple='\033[0;105m'  # Purple
 On_ICyan='\033[0;106m'    # Cyan
 On_IWhite='\033[0;107m'   # White
 
-
 # One Line Output
 OL =\e[1A\r\033[K
 CLEAR = \033[2K
@@ -98,12 +97,15 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp Fixed.cpp
+SRC_FILES	=	main.cpp ClapTrap.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+HEADER		+=  ClapTrap.hpp
+
+vpath %.hpp $(INC_DIR)
 
 #_____Build_____#
 all: $(NAME)
@@ -112,13 +114,13 @@ all: $(NAME)
 
 #compile the executable
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
 
 #compile objects
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
+	@$(CC) -I $(INC_DIR) -o $@ -c $<
 
 clean : 
 	@$(RM) $(OBJ_DIR)
