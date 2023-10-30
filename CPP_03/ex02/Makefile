@@ -3,7 +3,7 @@
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 # Name
-NAME	= ClapTrap
+NAME	= FragTrap
 
 #______________________________________________________________________________#
 ############################### Compiler #######################################
@@ -97,13 +97,15 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp ClapTrap.cpp
+SRC_FILES	=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 HEADER		+=  ClapTrap.hpp
+HEADER		+=  FragTrap.hpp
+HEADER		+=  ScavTrap.hpp
 
 vpath %.hpp $(INC_DIR)
 

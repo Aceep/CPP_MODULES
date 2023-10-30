@@ -2,18 +2,18 @@
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-    std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;
+    std::cout << "Constructor ClapTrap called for " << this->_name << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const & src)
 {
-    std::cout << "ClapTrap " << this->_name << " is born by copy!" << std::endl;
+    std::cout << "ClapTrap copy constructor called" << std::endl;
     *this = src;
 }
 
 ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 {
-    std::cout << "ClapTrap " << this->_name << " is born by operator!" << std::endl;
+    std::cout << "ClapTrap operator= called" << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs._name;
@@ -26,7 +26,7 @@ ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap " << this->_name << " is dead!" << std::endl;
+    std::cout << "ClapTrap destructor called for " << this->_name << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
