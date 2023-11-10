@@ -6,17 +6,18 @@ std::string    replace(std::string &line, std::string s1, std::string s2)
 {
     int pos = 0;
     std::string tmp;
+    std::string res;
 
     tmp = line;
     while ((pos = tmp.find(s1)) != -1)
     {
         tmp.erase(pos, s1.length());
         tmp.insert(pos, s2);
-        line.append(tmp.substr(0, pos + s2.length()));
+        res.append(tmp.substr(0, pos + s2.length()));
         tmp = tmp.substr(pos + s2.length());
     }
-    line.append(tmp);
-    return (line);
+    res.append(tmp);
+    return (res);
 }
 int main(int argc, char **argv)
 {
