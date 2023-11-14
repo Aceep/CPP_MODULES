@@ -1,48 +1,32 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    Animal* meta = new Animal();
+    Animal* j = new Dog();
+    Animal* i = new Cat();
 
-    std::cout << std::endl;
-    std::cout << "Animal:" << std::endl;
-    std::cout << std::endl;
+    std::cout << std::endl << "Test of animal voice : " << std::endl << std::endl;
+    std::cout << "Sound of a non type Animal :" << std::endl;
     meta->makeSound();
-    std::cout << std::endl;
-    std::cout << "Dog:" << std::endl;
-    std::cout << std::endl;
+    std::cout << "Sound of a Dog :" << std::endl;
     j->makeSound();
-    std::cout << std::endl;
-    std::cout << "Cat:" << std::endl;
-    std::cout << std::endl;
+    std::cout << "Sound of a Cat :" << std::endl;
     i->makeSound();
     std::cout << std::endl;
-    std::cout << "Wrong Animal:" << std::endl;
-    std::cout << std::endl;
-    const Animal* wrong = new Animal();
-    wrong->makeSound();
-    std::cout << std::endl;
-    std::cout << "Wrong Dog:" << std::endl;
-    std::cout << std::endl;
-    const Animal* wrongDog = new Dog();
-    wrongDog->makeSound();
-    std::cout << std::endl;
-    std::cout << "Wrong Cat:" << std::endl;
-    std::cout << std::endl;
-    const Animal* wrongCat = new Cat();
-    wrongCat->makeSound();
-    std::cout << std::endl;
-    std::cout << "Delete:" << std::endl;
-    std::cout << std::endl;
-    delete meta;
-    delete j;
-    delete i;
-    delete wrong;
-    delete wrongDog;
-    delete wrongCat;
+
+    std::cout << "Test of WrongAnimal" << std::endl << std::endl;
+    WrongAnimal* metaWrong = new WrongAnimal();
+    WrongAnimal* jWrong = new WrongCat();
+
+    std::cout << "Sound of a non type WrongAnimal :" << std::endl;
+    metaWrong->makeSound();
+    std::cout << "Sound of a WrongCat :" << std::endl;
+    jWrong->makeSound();
+
     return 0;
 }

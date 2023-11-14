@@ -1,7 +1,8 @@
 #ifndef ANIMAL_HPP
 # define ANIMAL_HPP
 
-#include <iostream>
+# include <iostream>
+# include "Brain.hpp"
 
 class Animal
 {
@@ -16,6 +17,7 @@ class Animal
             Animal &operator=(const Animal &rhs);
 
             virtual void makeSound();
+            virtual Brain *getBrain();
 };
 
 #endif
