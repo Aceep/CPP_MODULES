@@ -15,14 +15,17 @@ Cat::~Cat()
 
 Cat::Cat(const Cat &src)
 {
+    std::cout << "Copy constructor Cat called" << std::endl;
     *this = src;
 }
 
 Cat &Cat::operator=(const Cat &rhs)
 {
+    std::cout << "Assignation operator called" << std::endl;
     if (this != &rhs)
     {
         this->_type = rhs._type;
+        *this->_brain = *(rhs._brain);
     }
     return (*this);
 }
@@ -32,7 +35,12 @@ void    Cat::makeSound()
     std::cout << "Meow" << std::endl;
 }
 
-Brain   *Cat::getBrain()
+std::string   Cat::getBrain(int i) const
 {
-    return (this->_brain);
+    return (dynamic_cast<Brain *>(this->_brain)->getIdea(i));
+}
+
+void   Cat::setIdea(std::string id)
+{
+    dynamic_cast<Brain *>(this->_brain)->setIdea(id);
 }

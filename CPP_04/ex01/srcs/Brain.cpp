@@ -27,11 +27,11 @@ Brain &Brain::operator=(const Brain &rhs)
     return (*this);
 }
 
-void    Brain::setIdea(std::string idea)
+void    Brain::setIdea(std::string id)
 {
     for (int i = 0; i < 100; i++)
     {
-        this->_ideas[i] = idea + std::to_string(i);
+        this->_ideas[i] = id + std::to_string(i);
     }
 }
 

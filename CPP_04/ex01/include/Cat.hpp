@@ -17,7 +17,8 @@ class Cat : public Animal
         Cat &operator=(const Cat &rhs);
 
         void makeSound();
-        Brain *getBrain();
+        std::string getBrain(int i) const;
+        void setIdea(std::string id);
 };
 
 #endif

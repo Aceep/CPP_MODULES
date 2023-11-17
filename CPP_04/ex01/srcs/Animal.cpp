@@ -34,3 +34,4 @@ void    Animal::makeSound()
 {
     std::cout << "Animal make sound" << std::endl;
 }
+

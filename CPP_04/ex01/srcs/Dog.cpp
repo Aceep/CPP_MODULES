@@ -16,11 +16,13 @@ Dog::~Dog()
 
 Dog::Dog(const Dog &src)
 {
+    std::cout << "Copy constructor Dog called" << std::endl;
     *this = src;
 }
 
 Dog &Dog::operator=(const Dog &rhs)
 {
+    std::cout << "Assignation operator called" << std::endl;
     if (this != &rhs)
     {
         this->_type = rhs._type;
@@ -33,7 +35,12 @@ void    Dog::makeSound()
     std::cout << "Woof" << std::endl;
 }
 
-Brain   *Dog::getBrain()
+std::string   Dog::getBrain(int i) const
 {
-    return (this->_brain);
+    return (dynamic_cast<Brain *>(this->_brain)->getIdea(i));
+}
+
+void   Dog::setIdea(std::string id)
+{
+    dynamic_cast<Brain *>(this->_brain)->setIdea(id);
 }
