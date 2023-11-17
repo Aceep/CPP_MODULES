@@ -36,14 +36,17 @@ int main()
         delete Animals[i];
     }
     std::cout << "-------------------" << std::endl;
+    std::cout << "Deep copy constructor" << std::endl;
     Cat *a = new Cat();
     Cat b = *a;
-    //dynamic_cast<Cat *>(a)->setIdea("idea");
+    dynamic_cast<Cat *>(a)->setIdea("idea");
+    dynamic_cast<Cat *>(&b)->setIdea("MIAM");
     std::string a_idea = dynamic_cast<Cat *>(a)->getBrain(0);
     std::cout << "Adress for the a Cat brain " << &a_idea << std::endl;
-    //std::string b_idea = dynamic_cast<Cat *>(b)->getBrain(0);
-    //std::cout << "Adress for the b Cat brain " << &b_idea << std::endl;
-    //delete a;
-    //delete b;
+    std::cout << a_idea << std::endl;
+    delete a;
+    std::string b_idea = dynamic_cast<Cat *>(&b)->getBrain(0);
+    std::cout << "Adress for the b Cat brain " << &b_idea << std::endl;
+    std::cout << b_idea << std::endl;
     return 0;
 }

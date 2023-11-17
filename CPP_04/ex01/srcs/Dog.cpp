@@ -17,18 +17,30 @@ Dog::~Dog()
 Dog::Dog(const Dog &src)
 {
     std::cout << "Copy constructor Dog called" << std::endl;
-    *this = src;
+    this->_type = src._type;
+    this->_brain = new Brain();
+    for (int i = 0; i < 100; i++)
+    {
+            this->_brain->setIdea(src._brain->getIdea(i));
+    }
+    
 }
 
 Dog &Dog::operator=(const Dog &rhs)
 {
-    std::cout << "Assignation operator called" << std::endl;
+    std::cout << "Assignation operator Dog called" << std::endl;
     if (this != &rhs)
     {
         this->_type = rhs._type;
+        this->_brain = new Brain();
+        for (int i = 0; i < 100; i++)
+        {
+            this->_brain->setIdea(rhs._brain->getIdea(i));
+        }
     }
     return (*this);
 }
+
 
 void    Dog::makeSound()
 {

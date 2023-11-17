@@ -22,6 +22,7 @@ Cat::Cat(const Cat &src)
     {
             this->_brain->setIdea(src._brain->getIdea(i));
     }
+    
 }
 
 Cat &Cat::operator=(const Cat &rhs)
