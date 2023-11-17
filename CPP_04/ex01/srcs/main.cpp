@@ -36,14 +36,14 @@ int main()
         delete Animals[i];
     }
     std::cout << "-------------------" << std::endl;
-    Animal *a = new Cat();
-    Animal *b = a;
+    Cat *a = new Cat();
+    Cat b = *a;
     //dynamic_cast<Cat *>(a)->setIdea("idea");
     std::string a_idea = dynamic_cast<Cat *>(a)->getBrain(0);
     std::cout << "Adress for the a Cat brain " << &a_idea << std::endl;
-    std::string b_idea = dynamic_cast<Cat *>(b)->getBrain(0);
-    std::cout << "Adress for the b Cat brain " << &b_idea << std::endl;
-    delete a;
+    //std::string b_idea = dynamic_cast<Cat *>(b)->getBrain(0);
+    //std::cout << "Adress for the b Cat brain " << &b_idea << std::endl;
+    //delete a;
     //delete b;
     return 0;
 }
