@@ -103,7 +103,7 @@ OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER		+=  Animal.hpp
+HEADER		=  Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
 
 vpath %.hpp $(INC_DIR)
 
@@ -118,7 +118,7 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
 
 #compile objects
-$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
+$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(HEADER)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) -I $(INC_DIR) -o $@ -c $<
 

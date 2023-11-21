@@ -3,7 +3,7 @@
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 # Name
-NAME	= Polymorphism
+NAME	= Materia
 
 #______________________________________________________________________________#
 ############################### Compiler #######################################
@@ -97,13 +97,13 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRC_FILES	=	main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER		+=  Animal.hpp
+HEADER		=  AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp
 
 vpath %.hpp $(INC_DIR)
 
@@ -118,7 +118,7 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
 
 #compile objects
-$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
+$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(HEADER)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) -I $(INC_DIR) -o $@ -c $<
 
@@ -127,7 +127,5 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME)
-	@$(RM) filename.replace
-	@$(RM) filename
 
 re : clean all
