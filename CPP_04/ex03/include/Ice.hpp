@@ -4,11 +4,11 @@
 # include <iostream>
 # include "AMateria.hpp"
 
-class Ice
+class Ice : public AMateria
 {
     public :
             Ice();
-            virtual ~Ice();
+            ~Ice();
             Ice(const Ice &src);
             Ice &operator=(const Ice &rhs);
 

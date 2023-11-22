@@ -4,13 +4,13 @@
 # include <iostream>
 # include "AMateria.hpp"
 
-class Ice
+class Cure : public AMateria
 {
     public :
-            Ice();
-            virtual ~Ice();
-            Ice(const Ice &src);
-            Ice &operator=(const Ice &rhs);
+            Cure();
+            ~Cure();
+            Cure(const Cure &src);
+            Cure &operator=(const Cure &rhs);
 
             virtual AMateria* clone() const;
             virtual void use(ICharacter& target);
