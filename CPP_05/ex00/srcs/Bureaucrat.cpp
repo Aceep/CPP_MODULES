@@ -4,24 +4,9 @@ Bureaucrat::Bureaucrat()
 {
 }
 
-Bureaucrat::Bureaucrat(const std::string name, unsigned int grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade)
 {
-    this->_name = name;
-    try 
-    {
-        if (grade >= 1 && grade <= 150)
-        {
-            this->_grade = grade;
-        }
-        else 
-        {
-            throw(grade);
-        }
-    }
-    catch (unsigned int grade)
-    {
-        std::cout << grade << "is not a valid grade" << std::endl;
-    }
+    
 }
 Bureaucrat::~Bureaucrat()
 {
@@ -40,4 +25,14 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
         this->_grade = src._grade;
     }
     return (*this);
+}
+
+std::string Bureaucrat::getName() const
+{
+    return (this->_name);
+}
+
+unsigned int Bureaucrat::getGrade() const
+{
+    return (this->_grade);
 }

@@ -97,7 +97,7 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	Bureaucrat.cpp
+SRC_FILES	=	Bureaucrat.cpp main.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths
