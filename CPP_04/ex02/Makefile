@@ -114,20 +114,19 @@ all: $(NAME)
 
 #compile the executable
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
 
 #compile objects
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(HEADER)
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) -I $(INC_DIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
 
 clean : 
 	@$(RM) $(OBJ_DIR)
 
 fclean : clean
 	@$(RM) $(NAME)
-	@$(RM) filename.replace
-	@$(RM) filename
+
 
 re : clean all
