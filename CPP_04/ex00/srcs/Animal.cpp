@@ -18,7 +18,8 @@ Animal::Animal(std::string type)
 
 Animal::Animal(const Animal &src)
 {
-
+    std::cout << "Copy constructor animal called" << std::endl;
+    *this = src;
 }
 
 Animal &Animal::operator=(const Animal &rhs)
