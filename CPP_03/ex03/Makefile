@@ -103,10 +103,8 @@ OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER		+=  ClapTrap.hpp
-HEADER		+=  FragTrap.hpp
-HEADER		+=  ScavTrap.hpp
-HEADER		+=  DiamondTrap.hpp
+HEADER		=   ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
+
 
 vpath %.hpp $(INC_DIR)
 
@@ -117,20 +115,18 @@ all: $(NAME)
 
 #compile the executable
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
 
 #compile objects
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) -I $(INC_DIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
 
 clean : 
 	@$(RM) $(OBJ_DIR)
 
 fclean : clean
 	@$(RM) $(NAME)
-	@$(RM) filename.replace
-	@$(RM) filename
 
 re : clean all
