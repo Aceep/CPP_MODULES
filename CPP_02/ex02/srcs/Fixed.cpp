@@ -58,7 +58,10 @@ Fixed Fixed::operator*( Fixed const & rhs ) const
 Fixed Fixed::operator/( Fixed const & rhs ) const
 {
     //std::cout << "Division operator called" << std::endl;
-    return Fixed( this->toFloat() / rhs.toFloat() );
+    if (rhs.toFloat() != 0)
+        return Fixed( this->toFloat() / rhs.toFloat() );
+    else
+        return (std::cout << "Division by zero is not allowed" << std::endl, 0);
 }
 
 bool Fixed::operator>( Fixed const & rhs ) const

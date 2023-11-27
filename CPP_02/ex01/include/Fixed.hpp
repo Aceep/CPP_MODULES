@@ -14,6 +14,7 @@ class Fixed
         ~Fixed( void );
         
         Fixed & operator=( Fixed const & rhs );
+        std::ostream & operator<<( std::ostream & o ) const;
 
         int getRawBits( void ) const;
         void setRawBits( int const raw );
@@ -22,8 +23,8 @@ class Fixed
         int toInt( void ) const;
         
     private:
-        int _fixedPointValue;
-        static const int _fractionalBits = 8;
+        int                 _fixedPointValue;
+        static const int    _fractionalBits = 8;
 };
 
 std::ostream & operator<<( std::ostream & o, Fixed const & i );

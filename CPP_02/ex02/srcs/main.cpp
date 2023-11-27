@@ -29,6 +29,12 @@ int main( void )
     std::cout << c / d << std::endl;
     std::cout << c + d << std::endl;
     std::cout << c - d << std::endl;
+
+    // Test for operator increment and decrement
+    std::cout << "Test for operator increment and decrement" << std::endl;
+    std::cout << ++c << std::endl;
+    std::cout << --c << std::endl;
+
     
     return 0;
 }

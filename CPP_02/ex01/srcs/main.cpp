@@ -20,13 +20,5 @@ int main( void )
 
     std::cout << "a is " << a.toFloat() << " as float" << std::endl;
     std::cout << "b is " << b.toFloat() << " as float" << std::endl;
-    std::cout << "c is " << c.toFloat() << " as float" << std::endl;
-    std::cout << "d is " << d.toFloat() << " as float" << std::endl;
-
-    std::cout << "a is " << a.getRawBits() << std::endl;
-    std::cout << "b is " << b.getRawBits() << std::endl;
-    std::cout << "c is " << c.getRawBits() << std::endl;
-    std::cout << "d is " << d.getRawBits() << std::endl;
-
     return 0;
 }
