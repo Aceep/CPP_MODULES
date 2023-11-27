@@ -104,6 +104,9 @@ OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+HEADER		=	Fixed.hpp
+
+vpath %.hpp $(INC_DIR)
 
 #_____Build_____#
 all: $(NAME)
@@ -116,7 +119,7 @@ $(NAME): $(OBJ)
 	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
 
 #compile objects
-$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
+$(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(HEADER)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
 
@@ -125,7 +128,6 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME)
-	@$(RM) filename.replace
-	@$(RM) filename
+
 
 re : clean all
