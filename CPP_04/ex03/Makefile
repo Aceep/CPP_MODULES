@@ -97,13 +97,13 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp
+SRC_FILES	=	main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp Character.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER		=  AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp
+HEADER		=  AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp Character.hpp
 
 vpath %.hpp $(INC_DIR)
 

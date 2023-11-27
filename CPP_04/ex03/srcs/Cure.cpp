@@ -28,7 +28,6 @@ Cure &Cure::operator=(const Cure &rhs)
 
 AMateria *Cure::clone() const
 {
-    std::cout << "Cure::clone()" << std::endl;
     return new Cure(*this);
 }
 

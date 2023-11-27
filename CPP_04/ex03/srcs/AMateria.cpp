@@ -5,6 +5,11 @@ AMateria::AMateria()
     std::cout << "AMateria::AMateria()" << std::endl;
 }
 
+AMateria::AMateria(std::string const & type)
+{
+    this->_type = type;
+}
+
 AMateria::~AMateria()
 {
     std::cout << "AMateria::~AMateria()" << std::endl;
