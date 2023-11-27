@@ -2,12 +2,12 @@
 
 Character::Character()
 {
-    std::cout << "Character::Character()" << std::endl;
+    //std::cout << "Character::Character()" << std::endl;
 }
 
 Character::Character(std::string name)
 {
-    std::cout << "Character::Character(std::string name)" << std::endl;
+    //std::cout << "Character::Character(std::string name)" << std::endl;
     this->_name = name;
     //this->_inventory = new AMateria[4];
     for (int i = 0; i < 4; i++)
@@ -18,7 +18,7 @@ Character::Character(std::string name)
 
 Character::~Character()
 {
-    std::cout << "Character::~Character()" << std::endl;
+    //std::cout << "Character::~Character()" << std::endl;
     for (int i = 0; i < 4; i++)
     {
         if (this->_inventory[i] != NULL)
@@ -26,18 +26,18 @@ Character::~Character()
             delete this->_inventory[i];
         }
     }
-    delete [] this->_inventory;
+    //delete this->_inventory;
 }
 
 Character::Character(const Character &src)
 {
-    std::cout << "Character::Character(const Character &src)" << std::endl;
+    //std::cout << "Character::Character(const Character &src)" << std::endl;
     *this = src;
 }
 
 Character *Character::operator=(const Character &rhs)
 {
-    std::cout << "Character::operator=(const Character &rhs)" << std::endl;
+    //std::cout << "Character::operator=(const Character &rhs)" << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs._name;

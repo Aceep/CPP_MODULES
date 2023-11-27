@@ -2,23 +2,23 @@
 
 Ice::Ice() : AMateria("ice")
 {
-    std::cout << "Ice::Ice()" << std::endl;
+    //std::cout << "Ice::Ice()" << std::endl;
 }
 
 Ice::~Ice()
 {
-    std::cout << "Ice::~Ice()" << std::endl;
+    //std::cout << "Ice::~Ice()" << std::endl;
 }
 
 Ice::Ice(const Ice &src)
 {
-    std::cout << "Ice::Ice(const Ice &src)" << std::endl;
+    //std::cout << "Ice::Ice(const Ice &src)" << std::endl;
     *this = src;
 }
 
 Ice &Ice::operator=(const Ice &rhs)
 {
-    std::cout << "Ice::operator=(const Ice &rhs)" << std::endl;
+    //std::cout << "Ice::operator=(const Ice &rhs)" << std::endl;
     if (this != &rhs)
     {
         this->_type = rhs._type;
@@ -28,7 +28,7 @@ Ice &Ice::operator=(const Ice &rhs)
 
 AMateria* Ice::clone() const
 {
-    std::cout << "Ice::clone()" << std::endl;
+    //std::cout << "Ice::clone()" << std::endl;
     return new Ice(*this);
 }
 

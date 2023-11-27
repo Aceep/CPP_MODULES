@@ -97,13 +97,13 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp Character.cpp
+SRC_FILES	=	main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp Character.cpp MateriaSource.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER		=  AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp Character.hpp
+HEADER		= 	AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.hpp Character.hpp MateriaSource.hpp
 
 vpath %.hpp $(INC_DIR)
 
@@ -114,13 +114,13 @@ all: $(NAME)
 
 #compile the executable
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Finished [$(NAME)]$(RESET)"
 
 #compile objects
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp $(HEADER)
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) -I $(INC_DIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
 
 clean : 
 	@$(RM) $(OBJ_DIR)
