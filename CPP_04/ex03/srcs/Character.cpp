@@ -75,9 +75,12 @@ void Character::equip(AMateria *m)
         if (this->_inventory[i] == NULL)
         {
             this->_inventory[i] = m;
-            break;
+            std::cout << this->_name << " equip something" << std::endl;
+            return;
         }
     }
+    std::cout << "Inventory is full" << std::endl;
+    delete m;
 }
 
 void Character::unequip(int idx)
@@ -85,6 +88,7 @@ void Character::unequip(int idx)
     if (idx >= 0 && idx < 4)
     {
         this->_inventory[idx] = NULL;
+        std::cout << this->_name << " unequip something" << std::endl;
     }
 }
 
@@ -94,4 +98,17 @@ void Character::use(int idx, ICharacter &target)
     {
         this->_inventory[idx]->use(target);
     }
+    else 
+    {
+        std::cout << "Nothing to use here" << std::endl;
+    }
+}
+
+AMateria *Character::getInventory(int idx) const
+{
+    if (idx >= 0 && idx < 4)
+    {
+        return this->_inventory[idx];
+    }
+    return NULL;
 }

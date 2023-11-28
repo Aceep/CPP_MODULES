@@ -51,9 +51,12 @@ void            MateriaSource::learnMateria(AMateria *m)
         if (this->_materia[i] == NULL)
         {
             this->_materia[i] = m;
-            break ;
+            std::cout << "Materia learned" << std::endl;
+            return ;
         }
     }
+    std::cout << "All places are used" << std::endl;
+    delete m;
 }
 
 AMateria    *MateriaSource::createMateria(std::string const &type)
