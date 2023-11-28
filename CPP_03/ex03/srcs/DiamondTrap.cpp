@@ -1,6 +1,15 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), ScavTrap("Default"), FragTrap("Default")
+{
+    this->_name = "Default";
+    this->_attackDamage = FragTrap::_attackDamage;
+    this->_energyPoints = ScavTrap::_energyPoints;
+    this->_hitPoints = FragTrap::_hitPoints;
+    std::cout << "DiamondTrap default constructor called" << std::endl;
+}
+
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {
     this->_name = name;
     this->_attackDamage = FragTrap::_attackDamage;
@@ -36,11 +45,12 @@ DiamondTrap & DiamondTrap::operator=(DiamondTrap const & rhs)
 void DiamondTrap::whoAmI()
 {
     std::cout << "DiamondTrap name is " << this->_name << std::endl;
-    std::cout << "ClapTrap name is " << ClapTrap::_name << std::endl;
+    std::cout << "ClapTrap name is of " << this->_name << " is " << ClapTrap::_name << std::endl;
 }
 
 void DiamondTrap::attack(std::string const & target)
 {
+    std::cout << "using ScavTrap::attack" << std::endl; // "using" keyword is used to bring a specific function from a base class into the scope of a derived class 
     ScavTrap::attack(target);
 }
 

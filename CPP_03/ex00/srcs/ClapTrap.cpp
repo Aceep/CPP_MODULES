@@ -1,5 +1,10 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap() : _name("default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+    std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
     std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;
@@ -13,7 +18,6 @@ ClapTrap::ClapTrap(ClapTrap const & src)
 
 ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 {
-    std::cout << "ClapTrap " << this->_name << " is born by operator!" << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs._name;
@@ -57,7 +61,7 @@ void ClapTrap::beRepaired(unsigned int amount)
     if (this->_energyPoints == 0)
         return ((void)(std::cout << "ClapTrap " << this->_name << " is out of energy!" << std::endl));
     std::cout << "ClapTrap " << this->_name << " is repaired by " << amount << " points!" << std::endl;
-    this->_energyPoints --;
+    this->_hitPoints += amount;
 }
 
 int ClapTrap::getHitPoints() const

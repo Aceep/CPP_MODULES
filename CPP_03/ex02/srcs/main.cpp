@@ -9,6 +9,7 @@ int main()
     ScavTrap scavTrap("Scavy");
     std::cout << "-----FlagTrap--------" << std::endl;
     FragTrap fragTrap("Fragy");
+    std::endl(std::cout);
 
     clapTrap.attack("Scavy");
     scavTrap.takeDamage(0);

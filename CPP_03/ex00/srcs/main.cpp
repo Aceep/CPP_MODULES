@@ -10,7 +10,7 @@ int main()
         if (clapTrap.getHitPoints() > 0)
         {
             clapTrap.attack("target");
-            clapTrap.takeDamage(1);
+            clapTrap.takeDamage(10);
             clapTrap.beRepaired(5);
         }
     }
