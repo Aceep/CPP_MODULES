@@ -2,7 +2,7 @@
 
 WrongAnimal::WrongAnimal()
 {
-    std::cout << "Constructor WrongAnimal called" << std::endl;
+    std::cout << "Default Constructor WrongAnimal called" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal()

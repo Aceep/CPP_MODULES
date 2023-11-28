@@ -97,7 +97,7 @@ SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 INC_DIR		=	include/
 
-SRC_FILES	=	main.cpp AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp Character.cpp MateriaSource.cpp
+SRC_FILES	=	main.cpp AMateria.cpp Cure.cpp Ice.cpp Character.cpp MateriaSource.cpp
 OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 
 #paths

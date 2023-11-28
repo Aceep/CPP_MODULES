@@ -10,7 +10,6 @@ Dog::~Dog()
     std::cout << "Destructor Dog called" << std::endl;
 }
 
-
 Dog::Dog(const Dog &src)
 {
     *this = src;

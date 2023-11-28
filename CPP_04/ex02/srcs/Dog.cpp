@@ -13,7 +13,6 @@ Dog::~Dog()
     std::cout << "Destructor Dog called" << std::endl;
 }
 
-
 Dog::Dog(const Dog &src)
 {
     std::cout << "Copy constructor Dog called" << std::endl;
@@ -40,7 +39,6 @@ Dog &Dog::operator=(const Dog &rhs)
     }
     return (*this);
 }
-
 
 void    Dog::makeSound()
 {
