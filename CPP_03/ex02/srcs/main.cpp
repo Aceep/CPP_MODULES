@@ -9,19 +9,17 @@ int main()
     ScavTrap scavTrap("Scavy");
     std::cout << "-----FlagTrap--------" << std::endl;
     FragTrap fragTrap("Fragy");
+    std::cout << "-----FlagTrap Default--------" << std::endl;
+    FragTrap fragTrapDefault;
     std::endl(std::cout);
 
-    clapTrap.attack("Scavy");
-    scavTrap.takeDamage(0);
-    scavTrap.attack("Lapaing");
-    clapTrap.takeDamage(20);
     fragTrap.attack("Lapaing");
-    clapTrap.takeDamage(30);
+    fragTrap.takeDamage(10);
+    fragTrap.beRepaired(10);
 
     fragTrap.highFivesGuys();
 
-    scavTrap.beRepaired(10);
-    scavTrap.guardGate();
+    std::endl(std::cout);
 
     return (0);
 }

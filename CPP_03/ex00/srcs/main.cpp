@@ -3,7 +3,11 @@
 int main()
 {
     ClapTrap clapTrap("Lapaing");
+    std::cout << std::endl;
     ClapTrap clapTrapCopy(clapTrap);
+    std::cout << std::endl;
+    ClapTrap clapTrapAssign;
+    std::cout << std::endl;
 
     for (int i = 0; i < 10; i++)
     {    
@@ -14,5 +18,6 @@ int main()
             clapTrap.beRepaired(5);
         }
     }
+    std::cout << std::endl;
     return (0);
 }
