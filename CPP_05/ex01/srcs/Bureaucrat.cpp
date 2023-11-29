@@ -60,3 +60,11 @@ void Bureaucrat::incrementGrade()
     else
         this->_grade--;
 }
+
+void Bureaucrat::signForm(Form &form)
+{
+    if (form.getGradetosign() >= this->_grade)
+        std::cout << this->_name << " signs " << form.getName() << std::endl;
+    else
+        std::cout << this->_name << " cannot sign " << form.getName() << " because his grade is too low" << std::endl;
+}

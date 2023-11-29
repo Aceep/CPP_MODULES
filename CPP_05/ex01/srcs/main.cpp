@@ -1,72 +1,37 @@
 #include "Bureaucrat.hpp"
-
+#include "Form.hpp"
 int main(void)
 {
     std::cout << "------------------------------------" << std::endl;
-    std::cout << "Creation de Bureaucrates :" << std::endl;
-    try{
-        Bureaucrat a = Bureaucrat("Alain", 156);
-        std::cout << "Le grade de " << a.getName() << " est de "<< a.getGrade() << std::endl;
-    }
-    catch (std::exception &e)
+    std::cout << "Bureaucrat" << std::endl;
+    try
     {
-        std::cout << "For bureaucrat a : ";
-        std::cout << e.what() << std::endl;
+        Bureaucrat b("Georges", 1);
+        std::cout << b.getName() << std::endl;
+        std::cout << b.getGrade() << std::endl;
+        b.decrementGrade();
+        std::cout << b.getGrade() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
     }
     
-    try{
-        Bureaucrat b = Bureaucrat("Albert", 15);
-        std::cout << "Le grade de " << b.getName() << " est de "<< b.getGrade() << std::endl;
-    }
-    catch (std::exception &e)
+    try
     {
-        std::cout << "For bureaucrat b : ";
-        std::cout << e.what() << std::endl;
+        Form f("Form", 15, 1);
+        std::cout << f.getName() << std::endl;
+        std::cout << f.getGradetosign() << std::endl;
+        std::cout << f.getStatus() << std::endl;
+        std::cout << f.getGradetoexecute() << std::endl;
+        Bureaucrat b("Georges", 1);
+        b.signForm(f);
+        std::cout << f.getStatus() << std::endl;
     }
-
-    try{
-        Bureaucrat c = Bureaucrat("Albert", 0);
-        std::cout << "Le grade de " << c.getName() << " est de "<< c.getGrade() << std::endl;
-    }
-    catch (std::exception &e)
+    catch(const std::exception& e)
     {
-        std::cout << "For bureaucrat c : ";
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << '\n';
     }
-
-    std::cout << "------------------------------------" << std::endl;
-    std::cout << "Tests de decremention/incremention grade :" << std::endl;
-    try{
-        Bureaucrat d = Bureaucrat("Alister", 1);
-        d.incrementGrade();
-        std::cout << "Le nouveau grade de " << d.getName() << " est de "<< d.getGrade() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "For bureaucrat d new grade : ";
-        std::cout << e.what() << std::endl;
-    }
-
-    try{
-        Bureaucrat e = Bureaucrat("Aymeric", 15);
-        e.incrementGrade();
-        std::cout << "Le grade de " << e.getName() << " est de "<< e.getGrade() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "For bureaucrat e new grade : ";
-        std::cout << e.what() << std::endl;
-    }
-
-    try{
-        Bureaucrat f = Bureaucrat("Alphonse", 150);
-        f.decrementGrade();
-        std::cout << "Le grade de " << f.getName() << " est de "<< f.getGrade() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "For bureaucrat f new grade : ";
-        std::cout << e.what() << std::endl;
-    }
+    
     return (0);
 }

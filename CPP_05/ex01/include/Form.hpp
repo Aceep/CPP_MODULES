@@ -2,26 +2,31 @@
 # define FORM_HPP
 
 # include <iostream>
+# include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
     private :
             const std::string   _name;
             bool				_signed;
-			const unsigned int	_grade;
+			const unsigned int	_gradetosign;
 			const unsigned int	_gradetoexecute;
 	
 	public :
 			Form();
-			Form(const std::string name, int grade, int gradetoexecute);
+			Form(const std::string name, unsigned int grade, unsigned int gradetoexecute);
 			~Form();
 			Form(const Form &src);
 			Form &operator=(const Form &src);
 
-			const char		*getName() const;
-			unsigned int	*getGrade() const;
+			std::string		getName() const;
+			unsigned int	getGradetosign() const;
 			bool 			getStatus() const;
-			const char	*
+			unsigned int	getGradetoexecute() const;
+			void			beSigned(const Bureaucrat &bureaucrat);
+
 		class GradeTooHighException : public std::exception {
             public :
                 virtual const char *what() const throw() {return "Grade too high";}
