@@ -6,19 +6,26 @@
 
 int main()
 {
-    Animal meta = Animal();
-    Animal j = Dog();
-    Animal i = Cat();
+    std::cout << "Test of Animal" << std::endl;
+    Animal *meta = new Animal();
+    std::cout << "Dog : " << std::endl;
+    Animal *j = new Dog();
+    std::cout << "Cat : " << std::endl;
+    Animal *i = new Cat();
 
     std::cout << std::endl << "Test of animal voice : " << std::endl << std::endl;
     std::cout << "Sound of a non type Animal :" << std::endl;
-    meta.makeSound();
+    meta->makeSound();
     std::cout << "Sound of a Dog :" << std::endl;
-    j.makeSound();
+    j->makeSound();
     std::cout << "Sound of a Cat :" << std::endl;
-    i.makeSound();
+    i->makeSound();
     std::cout << std::endl;
 
+    delete meta;
+    delete j;
+    delete i;
+    
     std::cout << "Test of WrongAnimal" << std::endl << std::endl;
     WrongAnimal* metaWrong = new WrongAnimal();
     WrongAnimal* jWrong = new WrongCat();

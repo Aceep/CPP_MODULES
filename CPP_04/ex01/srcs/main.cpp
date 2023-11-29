@@ -6,6 +6,19 @@
 
 int main()
 {
+    std::cout << "Test of Deep Copy" << std::endl;
+    std::cout << "Construction of Dog named Basic" << std::endl;
+    Dog Basic;
+    Basic.setIdea("idea");
+    {
+        std::cout << "Construction of Dog named tmp by deep copy of Basic" << std::endl;
+        Dog tmp = Basic;
+        std::cout << "tmp is destroyed at the end of the scope but Basic still there" << std::endl;
+    }
+    std::cout << "Basic is still there" << std::endl;
+    Basic.makeSound();
+    std::cout << Basic.getBrain(0) << std::endl;
+    std::cout << "-------------------" << std::endl;
     Animal *Animals[10];
     for (int i = 0; i < 10; i ++)
     {

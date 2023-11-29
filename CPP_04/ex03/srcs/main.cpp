@@ -12,13 +12,18 @@ int main()
     std::cout << "Creation of equipement / character and equip / use" << std::endl;
     AMateria *c = new Cure();
     AMateria *i = new Ice();
+    AMateria *c2 = c->clone();
     ICharacter *a = new Character("Noah");
     std::cout << a->getName() << std::endl;
+    std::cout << "equip c" <<std::endl;
     a->equip(c);
+    std::cout << "equip c2" <<std::endl;
+    a->equip(c2);
     a->use(0, *a);
     a->use(1, *a);
     a->equip(i);
     a->use(1, *a);
+    a->use(2, *a);
     
     delete a;
     std::cout << std::endl;
