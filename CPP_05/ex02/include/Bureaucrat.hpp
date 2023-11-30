@@ -2,11 +2,14 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+# include "AForm.hpp"
+
+class AForm;
 
 class Bureaucrat
 {
     private :
-        std::string   _name;
+        std::string         _name;
         unsigned int        _grade;
 
     public :
@@ -20,6 +23,7 @@ class Bureaucrat
         unsigned int getGrade() const;
         void incrementGrade();
         void decrementGrade();
+        void signForm(AForm &form);
 
         class GradeTooHighException : public std::exception {
             public :

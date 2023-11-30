@@ -60,3 +60,10 @@ void Bureaucrat::incrementGrade()
     else
         this->_grade--;
 }
+
+std::ostream	&operator<<(std::ostream &o, const Bureaucrat &b)
+{
+    o << "Information of " << b.getName() << std::endl;
+    o << "Name : " << b.getName() << std::endl << "Grade : " << b.getGrade() << std::endl;
+    return o;
+}

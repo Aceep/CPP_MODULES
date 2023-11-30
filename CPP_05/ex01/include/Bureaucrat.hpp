@@ -9,7 +9,7 @@ class Form;
 class Bureaucrat
 {
     private :
-        std::string   _name;
+        std::string         _name;
         unsigned int        _grade;
 
     public :
@@ -34,5 +34,7 @@ class Bureaucrat
                 virtual const char *what() const throw() {return "Grade too low";}
         };
 };
+
+std::ostream	&operator<<(std::ostream &o, const Bureaucrat &b);
 
 #endif //BUREAUCRAT_HPP

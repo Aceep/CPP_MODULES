@@ -60,10 +60,23 @@ unsigned int Form::getGradetoexecute() const
     return (this->_gradetoexecute);
 }
 
-void Form::beSigned(const Bureaucrat &bureaucrat)
+void Form::beSigned(Bureaucrat &bureaucrat)
 {
     if (bureaucrat.getGrade() > this->_gradetosign)
         throw(Form::GradeTooLowException());
     else
         this->_signed = true;
+}
+
+std::ostream   &operator<<(std::ostream &o, const Form &f)
+{
+    o << "Information of " << f.getName() << std::endl;
+    o << "Grade to sign : " << f.getGradetosign() << std::endl;
+    o << "Grade to execute : " << f.getGradetoexecute() << std::endl;
+    o << "Form is ";
+    if (f.getStatus() == 0)
+        o << "not signed" << std::endl;
+    else
+        o << "signed" << std::endl;
+    return o;
 }

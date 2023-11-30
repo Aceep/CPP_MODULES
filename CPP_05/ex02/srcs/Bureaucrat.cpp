@@ -61,7 +61,7 @@ void Bureaucrat::incrementGrade()
         this->_grade--;
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
     if (form.getGradetosign() >= this->_grade)
     {

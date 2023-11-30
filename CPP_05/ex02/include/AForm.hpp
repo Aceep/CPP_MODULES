@@ -1,25 +1,25 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <iostream>
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
-    private :
+    protected :
             const std::string   _name;
             bool				_signed;
 			const unsigned int	_gradetosign;
 			const unsigned int	_gradetoexecute;
 	
 	public :
-			Form();
-			Form(const std::string name, unsigned int grade, unsigned int gradetoexecute);
-			~Form();
-			Form(const Form &src);
-			Form &operator=(const Form &src);
+			AForm();
+			AForm(const std::string name, unsigned int grade, unsigned int gradetoexecute);
+			virtual ~AForm();
+			AForm(const AForm &src);
+			AForm &operator=(const AForm &src);
 
 			
 
@@ -39,6 +39,6 @@ class Form
         };
 };
 
-std::ostream	&operator<<(std::ostream &o, const Form &f);
+std::ostream	&operator<<(std::ostream &o, const AForm &f);
 
 #endif //FORM_HPP
