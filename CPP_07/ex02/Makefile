@@ -3,7 +3,7 @@
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 # Name
-NAME	= Iter
+NAME	= Array
 
 #______________________________________________________________________________#
 ############################### Compiler #######################################
@@ -103,7 +103,7 @@ OBJ_FILES	=	$(SRC_FILES:.cpp=.o)
 #paths
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER		= 	iter.hpp
+HEADER		= 	Array.hpp
 
 vpath %.hpp $(INC_DIR)
 
