@@ -53,6 +53,8 @@
         "span": "cpp",
         "charconv": "cpp",
         "*.tpp": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "map": "cpp",
+        "set": "cpp"
     }
 }

@@ -34,7 +34,7 @@ RPN &RPN::operator=(const RPN &src) {
     return (*this);
 }
 
-bool    valid_arg(std::string arg) {
+bool    RPN::valid_arg(std::string arg) {
     if (arg.length() != 1)
         return (std::cout << "Invalid arg" << std::endl, 1);
     else if (!std::isdigit(arg[0]))
