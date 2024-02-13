@@ -11,7 +11,11 @@ RPN::RPN(const std::string arg)
     std::string token;
 
     while (std::getline(iss, token, ' ')){
-        if (!token.empty() && !valid_arg(token))
+		if (valid_arg(token)) {
+			delete this;
+			exit(1);
+		}	
+        if (!token.empty())
             tok.push(token);
     }
 
@@ -58,9 +62,9 @@ void   RPN::add() {
     ss2 >> b;
 	_calcul.pop();
 	std::cout << ss.str() << " + " << ss2.str() << " = " << a + b << std::endl;
-	std::stringstream ss3(_calcul.top());
-	ss3 << a + b;
-	_calcul.push(ss.str());
+	std::stringstream ss3;
+	ss3 << b + a;
+	_calcul.push(ss3.str());
 }
 
 void   RPN::sub() {
@@ -73,40 +77,47 @@ void   RPN::sub() {
     int b;
     ss2 >> b;
 	_calcul.pop();
-	std::cout << ss.str() << " + " << ss2.str() << " = " << a - b << std::endl;
-	std::stringstream ss3(_calcul.top());
-	ss3 << a - b;
+	std::cout << ss.str() << " - " << ss2.str() << " = " << a - b << std::endl;
+	std::stringstream ss3;
+	ss3 << b - a;
 	_calcul.push(ss3.str());
 }
 
 void   RPN::mul() {
-    _calcul.pop();
+    std::cout << "mul" << std::endl;
 	std::stringstream ss(_calcul.top());
     int a;
     ss >> a;
 	_calcul.pop();
 	std::stringstream ss2(_calcul.top());
     int b;
-    ss >> b;
+    ss2 >> b;
 	_calcul.pop();
-	ss << a * b;
-	_calcul.push(ss.str());
-    std::cout << "mul" << std::endl;
+	std::cout << ss.str() << " * " << ss2.str() << " = " << a * b << std::endl;
+	std::stringstream ss3;
+	ss3 << b * a;
+	_calcul.push(ss3.str());
 }
 
 void   RPN::div() {
-    _calcul.pop();
+    std::cout << "div" << std::endl;
 	std::stringstream ss(_calcul.top());
     int a;
     ss >> a;
 	_calcul.pop();
 	std::stringstream ss2(_calcul.top());
     int b;
-    ss >> b;
+    ss2 >> b;
 	_calcul.pop();
-	ss << a / b;
-	_calcul.push(ss.str());
-    std::cout << "div" << std::endl;
+	std::cout << ss.str() << " / " << ss2.str() << " = " << a / b << std::endl;
+	std::stringstream ss3;
+	if (a == 0)
+	{
+		std::cout << "Division by 0" << std::endl;
+		exit(1);
+	}
+	ss3 << b / a;
+	_calcul.push(ss3.str());
 }
 
 void    RPN::display(std::stack<std::string> show) const {
@@ -146,5 +157,5 @@ void	RPN::process() {
 			calculate();
 		_tokens.pop();
 	}
-	//display(_calcul);
+	display(_calcul);
 }
