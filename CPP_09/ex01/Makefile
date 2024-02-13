@@ -129,4 +129,4 @@ fclean : clean
 	@$(RM) $(NAME)
 	@$(RM) *_shrubbery
 
-re : clean all
+re : fclean all
