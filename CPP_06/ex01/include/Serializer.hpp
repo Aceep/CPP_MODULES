@@ -18,8 +18,8 @@ class Serializer
             Serializer& operator=(const Serializer& src);
 
     public :
-        static uintptr_t serialize(Data* ptr);
-        static Data* deserialize(uintptr_t raw);
+        static uintptr_t    serialize(Data* ptr);
+        static Data*        deserialize(uintptr_t raw);
 };
 
 #endif  // SERIALIZER_HPP

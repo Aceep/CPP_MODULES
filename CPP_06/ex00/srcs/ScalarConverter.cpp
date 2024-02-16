@@ -4,9 +4,15 @@ int     ft_stoi(const std::string &str)
 {
     int i;
     std::stringstream ss(str);
-    ss >> i;
-    if (ss.fail() || !ss.eof())
-        throw std::invalid_argument("Invalid argument");
+
+    if (str.find_first_of("f.") != std::string::npos)
+    {
+        float f;
+        ss >> f;
+        i = static_cast<int>(f);
+    }
+    else
+        ss >> i;
     return (i);
 }
 
@@ -15,8 +21,6 @@ float   ft_stof(const std::string &str)
     float f;
     std::stringstream ss(str);
     ss >> f;
-    if (ss.fail() || !ss.eof())
-        throw std::invalid_argument("Invalid argument");
     return (f);
 }
 
@@ -25,13 +29,42 @@ double  ft_stod(const std::string &str)
     double d;
     std::stringstream ss(str);
     ss >> d;
-    if (ss.fail() || !ss.eof())
-        throw std::invalid_argument("Invalid argument");
     return (d);
+}
+
+bool    is_a_pseudo_literal(const std::string &str)
+{
+    if (str == "nan")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: nanf" << std::endl;
+        std::cout << "double: nan" << std::endl;
+        return (true);
+    }
+    if (str == "+inf" || str == "inf")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: inff" << std::endl;
+        std::cout << "double: inf" << std::endl;
+        return (true);
+    }
+    if (str == "-inf")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: -inff" << std::endl;
+        std::cout << "double: -inf" << std::endl;
+        return (true);
+    }
+    return (false);
 }
 
 void    ScalarConverter::convert(const std::string &str)
 {
+    if (is_a_pseudo_literal(str) == true)
+        return;
     std::cout << "char: ";
     try
     {

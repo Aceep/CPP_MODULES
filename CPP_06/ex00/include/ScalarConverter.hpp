@@ -13,6 +13,10 @@
 class ScalarConverter {
 public:
 	static void	convert(std::string const & str);
+
+private:
+	ScalarConverter();
+	
 };
 
 #endif // CONVERTER_CLASS_H
