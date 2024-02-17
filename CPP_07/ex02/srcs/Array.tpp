@@ -38,7 +38,8 @@ template <class T> unsigned int Array<T>::size() const
 
 template <class T> T &Array<T>::operator[](unsigned int i)
 {
-    if (i >= this->_size)
+    if (i >= this->_size )
         throw Array<T>::OutOfRangeException();
     return (this->_array[i]);
 }
+

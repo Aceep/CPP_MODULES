@@ -28,5 +28,17 @@ int main()
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+    std::cout << "Test with const Array<int> d(5):" << std::endl;
+    const Array<std::string> d(5);
+    std::cout << d.size() << std::endl;
+    std::cout << &d << std::endl;
+    try {
+        d[0] = "11";
+        std::cout << "Write d[0]:" << d[0] << std::endl;
+        std::cout << "Write d[5]:" << d[5] << std::endl;
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
     return (0);
 }

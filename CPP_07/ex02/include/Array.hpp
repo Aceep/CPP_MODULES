@@ -20,6 +20,11 @@ template <class T> class Array
 
         unsigned int size() const;
         T &operator[](unsigned int i);
+        T&	operator[](const unsigned int i) const {
+			if (i >= this->_size )
+				throw (Array::OutOfRangeException());
+			return (this->_array[i]);
+		}
 
         class OutOfRangeException : public std::exception {
             public :
