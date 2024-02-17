@@ -31,5 +31,12 @@ int main()
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+    std::cout << "---------------------" << std::endl;
+    try {
+    easyfind<std::vector<int> >(vec, 4);
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
     return 0;
 }

@@ -62,3 +62,38 @@ unsigned int Span::longestSpan()
     max = _numbers.back() - _numbers.front();
     return max;
 }
+
+void    Span::addNumber(){
+    static int  n;
+
+    while (_N != 0)
+    {
+        this->addNumber(n);
+        n ++;
+    }
+}
+
+void    Span::print_span()
+{
+    for (std::vector<int>::iterator it = _numbers.begin(); it != _numbers.end(); it++)
+	{
+		std::cout << *it << "  ";
+	}
+}
+
+void    Span::addNumber(std::list<int> arg_list, int n){
+	if (this->_numbers.size() + n > _N)
+		throw Span::NotEnoughSpaceException();
+	for (int i = 0; i < n; i++) {
+            this->_numbers.insert(this->_numbers.end(), arg_list.begin(), arg_list.end());
+	}
+}
+
+void    Span::addNumber(int array[], int n)
+{
+    if (this->_numbers.size() + n > this->_N)
+        throw (Span::NotEnoughSpaceException());
+    for (int i = 0; i < n; i++) {
+            this->_numbers.push_back(array[i]);
+    }
+}

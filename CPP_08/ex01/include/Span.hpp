@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <vector>
+# include <list>
 
 class Span
 {
@@ -20,6 +21,10 @@ class Span
         void addNumber(int n);
         unsigned int shortestSpan();
         unsigned int longestSpan();
+        void addNumber();
+        void addNumber(std::list<int> arg_list, int n);
+        void addNumber(int array[], int n);
+        void print_span();
 
         class NotEnoughSpaceException : public std::exception {
             public:
