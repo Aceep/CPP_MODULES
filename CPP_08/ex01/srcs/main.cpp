@@ -48,12 +48,12 @@ int main()
 	{
 		std::srand(time(0));
 		try {
-			std::list<int> list(100);
+			std::list<int> list(30);
 			std::generate(list.begin(), list.end(), std::rand);
 			std::list<int> list2(list);
 			Span spp(list2.size());
 			spp.addNumber(list2, list2.size());
-			spp.print_span();
+			//spp.print_span();
             std::cout << sp.shortestSpan() << std::endl;
 			std::cout << sp.longestSpan() << std::endl;
 		} catch (const std::exception &e) {
@@ -72,6 +72,21 @@ int main()
 		} catch (const std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
+	}
+	std::cout << std::endl << "===== Testing no shortest =====" << std::endl;
+	try {
+		Span sp(10);
+		sp.addNumber(1);
+		std::cout << sp.shortestSpan() << std::endl;
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << std::endl << "===== Testing no longest =====" << std::endl;
+	try {
+		Span sp(10);
+		std::cout << sp.longestSpan() << std::endl;
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
 	}
     return 0;
 }
