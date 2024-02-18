@@ -52,7 +52,6 @@ bool    RPN::valid_arg(std::string arg) {
 }
 
 void   RPN::add() {
-	std::cout << "add" << std::endl;
     std::stringstream ss(_calcul.top());
     int a;
     ss >> a;
@@ -61,14 +60,13 @@ void   RPN::add() {
     int b;
     ss2 >> b;
 	_calcul.pop();
-	std::cout << ss.str() << " + " << ss2.str() << " = " << a + b << std::endl;
+
 	std::stringstream ss3;
 	ss3 << b + a;
 	_calcul.push(ss3.str());
 }
 
 void   RPN::sub() {
-    std::cout << "sub" << std::endl;
 	std::stringstream ss(_calcul.top());
     int a;
     ss >> a;
@@ -77,14 +75,13 @@ void   RPN::sub() {
     int b;
     ss2 >> b;
 	_calcul.pop();
-	std::cout << ss.str() << " - " << ss2.str() << " = " << a - b << std::endl;
+
 	std::stringstream ss3;
 	ss3 << b - a;
 	_calcul.push(ss3.str());
 }
 
 void   RPN::mul() {
-    std::cout << "mul" << std::endl;
 	std::stringstream ss(_calcul.top());
     int a;
     ss >> a;
@@ -93,14 +90,13 @@ void   RPN::mul() {
     int b;
     ss2 >> b;
 	_calcul.pop();
-	std::cout << ss.str() << " * " << ss2.str() << " = " << a * b << std::endl;
+
 	std::stringstream ss3;
 	ss3 << b * a;
 	_calcul.push(ss3.str());
 }
 
 void   RPN::div() {
-    std::cout << "div" << std::endl;
 	std::stringstream ss(_calcul.top());
     int a;
     ss >> a;
@@ -109,7 +105,7 @@ void   RPN::div() {
     int b;
     ss2 >> b;
 	_calcul.pop();
-	std::cout << ss.str() << " / " << ss2.str() << " = " << a / b << std::endl;
+
 	std::stringstream ss3;
 	if (a == 0)
 	{
@@ -156,6 +152,11 @@ void	RPN::process() {
 		else
 			calculate();
 		_tokens.pop();
+	}
+	if (_calcul.size() != 1)
+	{
+		std::cout << "Invalid expression" << std::endl;
+		exit(1);
 	}
 	display(_calcul);
 }
