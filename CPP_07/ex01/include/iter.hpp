@@ -1,7 +1,11 @@
 #ifndef ITER_HPP
 # define ITER_HPP
-
 # include <iostream>
+
+template<typename T>
+void print(T& s) {
+	std::cout << s << '\n';
+}
 
 template <typename T> void iter(T *array, size_t lenght, void (*f)(T const &)) 
 {

@@ -56,6 +56,23 @@ int main()
         std::cout << "min(k, l) = " << min<double>(k, l) << std::endl;
         std::cout << "max(k, l) = " << max<double>(k, l) << std::endl;
         std::cout << std::endl;
+        int a1 = 2;
+	    int b1 = 3;
+	    ::swap( a1, b1 );
+	    std::cout << "a1 = " << a1 << ", b1 = " << b1 << std::endl;
+	    std::cout << "min( a1, b1 ) = " << ::min( a1, b1 ) << std::endl;
+	    std::cout << "max( a1, b1 ) = " << ::max( a1, b1 ) << std::endl;
+	    a1 = -2;
+	    std::cout << "a1 = " << a1 << ", b1 = " << b1 << std::endl;
+	    std::cout << "min( a1, b1 ) = " << ::min( a1, b1 ) << std::endl;
+	    std::cout << "max( a1, b1 ) = " << ::max( a1, b1 ) << std::endl;
+	    std::string c1 = "chaine1";
+	    std::string d1 = "chaine2";
+	    ::swap(c1, d1);
+	    std::cout << "c1 = " << c1 << ", d1 = " << d1 << std::endl;
+	    std::cout << "min( c1, d1 ) = " << ::min( c1, d1 ) << std::endl;
+	    std::cout << "max( c1, d1 ) = " << ::max( c1, d1 ) << std::endl
+	    	<< std::endl;
     }
     catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
