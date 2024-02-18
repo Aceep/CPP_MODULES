@@ -2,12 +2,18 @@
 
 int main(int ac, char **av)
 {
-    if (ac != 2)
-    {
-        std::cout << "Usage: ./bitcoin [input]" << std::endl;
-        return 1;
-    }
-    BitcoinExchange exchange("data.csv");
-    exchange.Process(av[1]);
-    return 0;
+	if (ac != 2) {
+		std::cout << "Invalid number of arguments:\n [Usage] : ./btc [filename]" << std::endl;
+		return 1;
+	}
+	BitcoinExchange btc;
+	std::string	dataFileName = "data.csv";
+	try {
+		btc.fillData(dataFileName);
+		btc.processFile(av[1]);
+	}
+	catch (std::exception & e) {
+		std::cout << "Error: " << e.what() << std::endl;
+	}
+	return 0;
 }

@@ -1,152 +1,158 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(const std::string & filename)
-{
-	std::ifstream   file(filename.c_str());
-	std::string     line;
-
-	std::getline(file, line);
-	while (std::getline(file, line))
-	{
-		std::string::size_type pos = line.find(',');
-		if (pos == std::string::npos)
-		{
-			std::cout << "Invalid line: " << line << std::endl;
-			continue;
-		}
-		std::string date = line.substr(0, pos);
-		std::string rate_str = line.substr(pos + 1);
-
-		double rate;
-		std::istringstream rate_double(rate_str);
-		if (!(rate_double >> rate))
-		{
-			std::cout << "Invalid rate: " << rate << std::endl;
-			continue;
-		}
-		_rates[date] = rate;
-	}
-}	
-
-BitcoinExchange::BitcoinExchange(BitcoinExchange const & src)
-{
-	*this = src;
+//Contructors and destructors
+BitcoinExchange::BitcoinExchange() {
 }
 
-BitcoinExchange::~BitcoinExchange(void)
-{
+BitcoinExchange::BitcoinExchange(BitcoinExchange const & cpy) {
+	*this = cpy;
 }
 
-BitcoinExchange &	BitcoinExchange::operator=(BitcoinExchange const & rhs)
-{
+BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const & rhs) {
 	if (this != &rhs)
-	{
-		_rates = rhs._rates;
-	}
+		_btcPrices = rhs._btcPrices;
 	return *this;
 }
 
-double	BitcoinExchange::GetExchangeRate(const std::string & date)
-{
-	std::map<std::string, double>::iterator it = _rates.lower_bound(date);
+BitcoinExchange::~BitcoinExchange() {
+}
 
-	if (it->first != date && it != _rates.begin())
-		it--;
+//Exeception definitions
+const char* BitcoinExchange::invalidFormat::what(void) const throw() {
+	return "invalid format";
+}
+
+const char* BitcoinExchange::invalidDate::what(void) const throw() {
+	return "bad input";
+}
+
+const char* BitcoinExchange::qtyNegative::what(void) const throw() {
+	return "not a positive number.";
+}
+
+const char* BitcoinExchange::qtyTooLarge::what(void) const throw() {
+	return "too large a number.";
+}
+
+const char* BitcoinExchange::dataFileCorrupted::what(void) const throw() {
+	return "Data file corrupted.";
+}
+
+//Member functions
+void	BitcoinExchange::fillData(std::string dataFile)
+{
+	std::ifstream	file(dataFile.c_str());
+	if (!file.is_open())
+		throw std::runtime_error("Data file not found");
 	
-	if (it->first == date)
-		return it->second;
-	else if (!it->first.empty())
-		return it->second;
-	return -1.0;
-}
-
-bool BitcoinExchange::ValidDate(const std::string & date)
-{
-	std::string::size_type pos = date.find('-');
-	std::string::size_type pos2 = date.find('-', pos + 1);
-
-	if (pos == std::string::npos || pos2 == std::string::npos)
-		return false;
-
-	std::string year_str = date.substr(0, pos);
-	std::string month_str = date.substr(pos + 1, pos2 - pos - 1);
-	std::string day_str = date.substr(pos2 + 1);
-
-	int year, month, day;
-	std::istringstream year_ss(year_str), month_ss(month_str), day_ss(day_str);
-	if (!(year_ss >> year) || !(month_ss >> month) || !(day_ss >> day))
-		return false;
-
-	if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
-		return false;
-	
-	//Check for 30 days
-	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
-		return false;
-
-	//Check for February
-	if (month == 2)
-	{
-		if (day > 29)
-			return false;
-		if (day == 29)
-		{
-			if (year % 4 != 0)
-				return false;
-			if (year % 100 == 0 && year % 400 != 0)
-				return false;
-		}
-	}
-	return true;
-}
-
-bool BitcoinExchange::ValidAmount(const double amount)
-{
-	if (amount < 0 || amount > 1000000)
-	{
-		std::cout << "Invalid amount: " << amount << std::endl;
-		return false;
-	}
-	return true;
-}
-
-void	BitcoinExchange::Process(const std::string & filename)
-{
-	std::ifstream   file(filename.c_str());
-	std::string     line;
+	std::string	line;
+	std::string	date;
+	int			limPos;
+	double		value;
 
 	std::getline(file, line);
-	while (std::getline(file, line))
-	{
-		std::string::size_type pos = line.find('|');
-		if (pos == std::string::npos)
-		{
-			std::cout << "Invalid line : incorrect format" << std::endl;
-			continue;
-		}
-		std::string date = line.substr(0, pos);
-		std::string amount_str = line.substr(pos + 1);
+	while (std::getline(file, line)) {
+		limPos = line.find(",");
+		if (limPos != 10)
+			throw dataFileCorrupted();
+		date = line.substr(0, limPos);
+		value = std::strtod(line.substr(limPos + 1, line.length()).c_str(), NULL);
+		this->_btcPrices[date] = value;
+	}
+}
 
-		double amount;
-		std::istringstream amount_double(amount_str);
-		if (!(amount_double >> amount))
-		{
-			std::cout << "Invalid amount: " << amount << std::endl;
-			continue;
+static bool	is_number(const std::string& s)
+{
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && std::isdigit(*it))
+		++it;
+	return !s.empty() && it == s.end();
+}
+
+static bool	validDate(std::string const & date)
+{
+	try {
+		if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+			return false;
+		std::string	sYear = date.substr(0, 4);
+		std::string	sMonth = date.substr(5, 2);
+		std::string	sDay = date.substr(8, 2);
+		if (!is_number(sYear) || !is_number(sMonth) || !is_number(sDay))
+			return false;
+
+		char* pEnd;
+		int year = std::strtol(sYear.c_str(), &pEnd, 10);
+		int month = std::strtol(sMonth.c_str(), &pEnd, 10);
+		int day = std::strtol(sDay.c_str(), &pEnd, 10);
+
+		const int lookup_table[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
+		if (!(month >= 1 && month <= 12)){
+			return false;}
+		if (!(day >= 1 && day <= lookup_table[month-1])){
+			return false;}
+		if (!(year >= 1900)){
+			return false;}
+	}
+	catch (std::exception & e) {
+		return false;
+	}
+	return true;
+}
+
+double	BitcoinExchange::findPrice(std::string const & date)
+{
+	std::map<std::string, double>::iterator it = _btcPrices.begin();
+	while (it != _btcPrices.end()) {
+		if (it->first >= date)
+			return (--it)->second;
+		it++;
+	}
+	return 0;
+}
+
+void	BitcoinExchange::processFile(char* inputFileName)
+{
+	std::ifstream	file(inputFileName);
+	if (!file.is_open())
+		throw std::runtime_error("Input file not found");
+
+	std::string		line;
+	std::string		date;
+	int				limPos;
+	double			price;
+
+	std::string		sQty;
+	double			qty;
+
+
+	std::getline(file, line);
+	while (std::getline(file, line)) {
+		try {
+			if (line.empty())
+				continue;
+			limPos = line.find(" | ");
+			if (limPos != 10)
+				throw invalidFormat();
+
+			date = line.substr(0, limPos);
+			if (!validDate(date))
+				throw invalidDate();
+
+			price = findPrice(date);
+
+			sQty = line.substr(limPos + 3, line.length() - limPos + 3);
+			qty = std::strtod(sQty.c_str(), NULL);
+			if (qty < 0)
+				throw qtyNegative();
+			if (qty > 1000)
+				throw qtyTooLarge();
+			std::cout << date << " => " << qty << " = " << qty * price << std::endl;
 		}
-		if (!ValidDate(date))
-		{
-			std::cout << "Invalid date: " << date << std::endl;
-			continue;
+		catch (invalidDate & e) {
+			std::cout << "Error: " << e.what() << " => " << date << "." << std::endl;
 		}
-		if (!ValidAmount(amount))
-			continue;
-		double rate = GetExchangeRate(date);
-		if (rate == 0)
-		{
-			std::cout << "No exchange rate for date: " << date << std::endl;
-			continue;
+		catch (std::exception & e) {
+			std::cout << "Error: " << e.what() << "." << std::endl;
 		}
-		std::cout << date << ": " << amount << " rate : "  << rate <<" BTC = " << amount * rate << std::endl;
 	}
 }
