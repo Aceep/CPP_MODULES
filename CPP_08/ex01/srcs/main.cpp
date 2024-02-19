@@ -48,7 +48,7 @@ int main()
 	{
 		std::srand(time(0));
 		try {
-			std::list<int> list(30);
+			std::list<int> list(20);
 			std::generate(list.begin(), list.end(), std::rand);
 			std::list<int> list2(list);
 			Span spp(list2.size());

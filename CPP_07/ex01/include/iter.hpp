@@ -2,21 +2,34 @@
 # define ITER_HPP
 # include <iostream>
 
+
 template<typename T>
 void print(T& s) {
 	std::cout << s << '\n';
 }
 
-template <typename T> void iter(T *array, size_t lenght, void (*f)(T const &)) 
+template<class T,size_t N>
+size_t length(T a[N]){
+    (void)a;
+    return N;
+}
+
+template <typename T> void iter(T *array, int len, void (*f)(T const &)) 
 {
-    for (size_t i = 0; i < lenght; i++) 
+    if (len < 0 || !array || !f)
+        return ;
+    int lenght = sizeof(&array);
+    for (int i = 0; i < len && i < lenght + 1; i++) 
         f(array[i]);
 }
 
 template <typename T, typename S>
-void iter(T* array, size_t len, void (*fun)(S&))
+void iter(T* array, int len, void (*fun)(S&))
 {
-    for (size_t i = 0; i < len; i++) {
+    if (len <= 0 || !array || !fun)
+        return ;
+    int lenght = sizeof(&array);
+    for (int i = 0; i < len && i < lenght + 1; i++) {
         fun(array[i]);
     }
 }
