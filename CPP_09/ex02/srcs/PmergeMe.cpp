@@ -127,7 +127,7 @@ void	PmergeMe<Container>::benchmark() const
 	else
 		std::cout << "Not sorted!" << std::endl;
 	std::cout
-			<<	"Time to process a range of " << _data.size()
+			<<	"Time to process a range of " << _sortedData.size()
 			<< " elements with std::" << ::getContainerName<Container>()
 			<< " : " << std::fixed << std::setprecision(5) << _time << " us"
 			<< std::endl;
