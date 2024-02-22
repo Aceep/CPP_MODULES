@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include <list>
 
 //Contructors and destructors
 BitcoinExchange::BitcoinExchange() {
@@ -56,9 +57,15 @@ void	BitcoinExchange::fillData(std::string dataFile)
 		if (limPos != 10)
 			throw dataFileCorrupted();
 		date = line.substr(0, limPos);
-		value = std::strtod(line.substr(limPos + 1, line.length()).c_str(), NULL);
+		std::string	rate = line.substr(limPos + 1, line.length() - limPos - 1);
+		std::istringstream	iss(rate);
+
+		if (!(iss >> value) || !iss.eof() || value < 0) 
+			throw dataFileCorrupted();
 		this->_btcPrices[date] = value;
 	}
+	if (this->_btcPrices.empty())
+		throw dataFileCorrupted();
 }
 
 static bool	is_number(const std::string& s)
@@ -69,45 +76,56 @@ static bool	is_number(const std::string& s)
 	return !s.empty() && it == s.end();
 }
 
+int		ft_stoi(std::string const & s)
+{
+	int		i = 0;
+	int		n = 0;
+	int		sign = 1;
+
+	if (s[i] == '-') {
+		sign = -1;
+		i++;
+	}
+	while (s[i] != '\0') {
+		if (s[i] < '0' || s[i] > '9')
+			throw std::invalid_argument("stoi");
+		n = n * 10 + s[i] - '0';
+		i++;
+	}
+	return n * sign;
+}
+
 static bool	validDate(std::string const & date)
 {
-	try {
-		if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-			return false;
-		std::string	sYear = date.substr(0, 4);
-		std::string	sMonth = date.substr(5, 2);
-		std::string	sDay = date.substr(8, 2);
-		if (!is_number(sYear) || !is_number(sMonth) || !is_number(sDay))
-			return false;
-
-		char* pEnd;
-		int year = std::strtol(sYear.c_str(), &pEnd, 10);
-		int month = std::strtol(sMonth.c_str(), &pEnd, 10);
-		int day = std::strtol(sDay.c_str(), &pEnd, 10);
-
-		const int lookup_table[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
-		if (!(month >= 1 && month <= 12)){
-			return false;}
-		if (!(day >= 1 && day <= lookup_table[month-1])){
-			return false;}
-		if (!(year >= 1900)){
-			return false;}
-	}
-	catch (std::exception & e) {
+	if (date.length() != 10)
 		return false;
-	}
+	if (date[4] != '-' || date[7] != '-')
+		return false;
+	if (!is_number(date.substr(0, 4)) || !is_number(date.substr(5, 2)) || !is_number(date.substr(8, 2)))
+		return false;
+	if (ft_stoi(date.substr(5, 2)) < 1 || ft_stoi(date.substr(5, 2)) > 12)
+		return false;
+	if (ft_stoi(date.substr(0, 4)) < 1950 || ft_stoi(date.substr(0, 4)) > 2024)
+		return false;
+	int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30};
+	if (ft_stoi(date.substr(0, 4)) % 4 == 0 && (ft_stoi(date.substr(0, 4)) % 100 != 0 || ft_stoi(date.substr(0, 4)) % 400 == 0))
+		daysInMonth[1] = 29;
+	if (ft_stoi(date.substr(8, 2)) < 1 || ft_stoi(date.substr(8, 2)) > daysInMonth[ft_stoi(date.substr(5, 2)) - 1])
+		return false;
 	return true;
 }
 
 double	BitcoinExchange::findPrice(std::string const & date)
 {
 	std::map<std::string, double>::iterator it = _btcPrices.begin();
+	if (it->first > date)
+		throw invalidDate();
 	while (it != _btcPrices.end()) {
 		if (it->first >= date)
 			return (--it)->second;
 		it++;
 	}
-	return 0;
+	return (--it)->second;
 }
 
 void	BitcoinExchange::processFile(char* inputFileName)
@@ -140,8 +158,10 @@ void	BitcoinExchange::processFile(char* inputFileName)
 
 			price = findPrice(date);
 
-			sQty = line.substr(limPos + 3, line.length() - limPos + 3);
-			qty = std::strtod(sQty.c_str(), NULL);
+			sQty = line.substr(limPos + 3, line.length() - limPos - 3);
+			std::istringstream	iss(sQty);
+			if (!(iss >> qty) || !iss.eof() || qty < 0)
+				throw invalidFormat();
 			if (qty < 0)
 				throw qtyNegative();
 			if (qty > 1000)
@@ -149,7 +169,7 @@ void	BitcoinExchange::processFile(char* inputFileName)
 			std::cout << date << " => " << qty << " = " << qty * price << std::endl;
 		}
 		catch (invalidDate & e) {
-			std::cout << "Error: " << e.what() << " => " << date << "." << std::endl;
+			std::cout << "Error: " << e.what() << " [" << date << "]" << std::endl;
 		}
 		catch (std::exception & e) {
 			std::cout << "Error: " << e.what() << "." << std::endl;
