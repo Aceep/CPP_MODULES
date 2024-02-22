@@ -24,7 +24,7 @@ const char* BitcoinExchange::invalidFormat::what(void) const throw() {
 }
 
 const char* BitcoinExchange::invalidDate::what(void) const throw() {
-	return "bad input";
+	return "bad input : invalid date.";
 }
 
 const char* BitcoinExchange::qtyNegative::what(void) const throw() {
